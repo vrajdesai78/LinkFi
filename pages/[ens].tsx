@@ -160,20 +160,17 @@ const sendNotification = async () => {
       notification: {
         title: 'You received the FIL',
         body: `You received ${amount} from ${walletAddress}`,
-        // title: `Notification from the Asset Vault`,
-        //   body: `You have registered successfully with Asset Vault.`,
+     
       },
       payload: {
-       // title: 'You received the FIL',
-        // body: `You received ${amount} from ${walletAddress}`,sset Vault.`,
+    
          title: 'You received the FIL',
         body: `You received ${amount} from ${walletAddress}`,
-        // title: 'You received the FIL',
-        //         body: `You received ${amount} from ${walletAddress}`,
-        cta: 'https://github.com/neel-ds/assetvault',
+     
+        cta: '',
         img: 'https://bafkreifdfmloam7qliahnivdbo3k5wpff7td255ziwtqmg6jmr73habqc4.ipfs.nftstorage.link/'
       },
-      recipients: 'eip155:5:0x6f99Da273ff1665707e012B47F0BeE3a3e412673', //pient address
+      recipients:  `eip155:5:${walletAddress}`, //pient address
       channel: 'eip155:5:0xD720205354C0b922666aAf6113C45eF8026a409E', // your channel address
       env: 'staging'
     });
@@ -189,7 +186,7 @@ const sendNotification = async () => {
 const getNotification = async () => {
   try {
     const notifications = await PushAPI.user.getFeeds({
-      user: 'eip155:5:0x6f99Da273ff1665707e012B47F0BeE3a3e412673', 
+    user: `eip155:5:${walletAddress}`, 
       env: 'staging'
     });
     alert(notifications[0].title);
