@@ -7,7 +7,7 @@ import {
   Heading,
   Box,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import HistoryCard from "../components/HistoryCard";
 import abi from "../utils/contractABI.json";
 import { ethers } from "ethers";
@@ -23,7 +23,7 @@ interface historyDetails {
   timestamp: number;
 }
 
-export default function history() {
+export default function History() {
   const [history, setHistory] = useState<historyDetails[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const { address, isConnected } = useAccount();
