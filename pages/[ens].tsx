@@ -20,7 +20,6 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import abi from "../utils/contractABI.json";
-import { ethers } from "ethers";
 import React, { useEffect, useState } from "react";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { IconType } from "react-icons";
@@ -30,6 +29,8 @@ import { NavBar } from "../components/NavBar";
 import { useAccount } from "wagmi";
 import { contractAddress } from "../utils/contract";
 import { Chat } from "@pushprotocol/uiweb";
+import * as PushAPI from "@pushprotocol/restapi";
+import * as ethers from "ethers";
 
 interface profileDetails {
   name: string;
@@ -147,6 +148,77 @@ const App = () => {
     }
   };
 
+const Pkey = '0x241b010325b511a915e39063253bb4fdc066bac960a6041300e6d0b550e2c630';
+const signer = new ethers.Wallet(Pkey);
+
+// const sendNotification = async() => {
+//   try {
+//     const apiResponse = await PushAPI.payloads.sendNotification({
+//       signer,
+//       type: 3, // target
+//       identityType: 2, // direct payload
+//       notification: {
+//         title: 'You received the FIL',
+//         body:   `You received ${amount} from ${walletAddress}`
+//       },
+//       payload: {
+//         title: 'You received the FIL',
+//         body: `You received ${amount} from ${walletAddress}`,
+//         cta: '',
+//         img: ''
+//       },
+//       recipients: `eip155:5:${address}`, // recipient address
+//       channel: 'eip155:5:0x78D98C8DBD4e1BFEfe439f1bF89692FeDCa95C45', // your channel address
+//       env: 'staging'
+//     });
+    
+//     // apiResponse?.status === 204, if sent successfully!
+//     console.log('API repsonse: ', apiResponse);
+//   } catch (err) {
+//     console.error('Error: ', err);
+//   }
+// }
+const sendNotification = async () => {
+  try {
+    const apiResponse = await PushAPI.payloads.sendNotification({
+      signer,
+      type: 3, // target
+      identityType: 2, // direct payload
+      notification: {
+        title: `Notification from the Asset Vault`,
+        body: `You have registered successfully with Asset Vault.`
+      },
+      payload: {
+        title: `Notification from the Asset Vault`,
+        body: `You have registered successfully with Asset Vault.`,
+        cta: 'https://github.com/neel-ds/assetvault',
+        img: 'https://bafkreifdfmloam7qliahnivdbo3k5wpff7td255ziwtqmg6jmr73habqc4.ipfs.nftstorage.link/'
+      },
+      recipients: 'eip155:5:0x78D98C8DBD4e1BFEfe439f1bF89692FeDCa95C45', // recipient address
+      channel: 'eip155:5:0x78D98C8DBD4e1BFEfe439f1bF89692FeDCa95C45', // your channel address
+      env: 'staging'
+    });
+
+    // apiResponse?.status === 204, if sent successfully!
+    console.log('API repsonse: ', apiResponse);
+  await  getNotification();
+  } catch (err) {
+    console.error('Error: ', err);
+  }
+}
+
+const getNotification = async () => {
+  try {
+    const notifications = await PushAPI.user.getFeeds({
+      user: 'eip155:5:0x78D98C8DBD4e1BFEfe439f1bF89692FeDCa95C45', // user address in CAIP
+      env: 'staging'
+    });
+    alert(notifications[0].title);
+    console.log('Notification received:', notifications);
+  } catch (error) {
+    console.error('Error: ', error);
+  }
+}
   const sendTransaction = async () => {
     try {
       if (window.ethereum) {
@@ -175,23 +247,23 @@ const App = () => {
               contractAbi,
               signer
             );
-
             const addtx = await contract.setTransaction(
               walletAddress,
               address,
               amount,
               message
             );
-
+            sendNotification();
             addtx.wait().then(() => {
               toast({
-                title: "Matic Sent",
-                description: "You successfully sent matic",
+                title: "FIL Sent",
+                description: "You successfully sent FIL",
                 status: "success",
                 duration: 9000,
                 isClosable: true,
               });
             });
+
           }
         });
       }
@@ -208,8 +280,8 @@ const App = () => {
     >
       <NavBar />
       <Chat
-        account="0x6430C47973FA053fc8F055e7935EC6C2271D5174" //user address
-        supportAddress="0xd9c1CCAcD4B8a745e191b62BA3fcaD87229CB26d" //support address
+        account={(address as string)}
+        supportAddress={walletAddress} //support address
         apiKey="jVPMCRom1B.iDRMswdehJG7NpHDiECIHwYMMv6k2KzkPJscFIDyW8TtSnk4blYnGa8DIkfuacU0"
         env="staging"
       />
@@ -306,7 +378,7 @@ const App = () => {
             <Stack mt={4} direction={"row"} spacing={2}>
               <NumberInput width={"100%"} border={1}>
                 <NumberInputField
-                  placeholder="Enter Matic"
+                  placeholder="Enter FIL"
                   flex={2}
                   bg={"gray.100"}
                   fontSize={"sm"}
@@ -331,7 +403,7 @@ const App = () => {
                 size={"2xl"}
                 p={2}
                 color={"white"}
-                onClick={sendTransaction}
+                onClick={sendNotification}
                 boxShadow={
                   "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
                 }
@@ -342,7 +414,7 @@ const App = () => {
                   bg: "blue.900",
                 }}
               >
-                Send Matic
+                Send FIL
               </Button>
             </Stack>
           </Box>
