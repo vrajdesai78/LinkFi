@@ -1,5 +1,5 @@
 # LinkFi
-LinkFi provides utilities to create your personal profile on-chain. Every user can buy their unique ENS from LinkFi and use it to create an on-chain profile. Share your on-chain profile with a larger audience and receive Fil Tokens as a donation. This dApp is enhanced with Polygon Network so users will have a seamless transaction experience over the action of sending or receiving Fil. Feel secure as your data is stored on smart contract and LinkFi gets it through your ENS domain.
+LinkFi provides utilities to create your personal profile on-chain. Every user can buy their unique FNS from LinkFi and use it to create an on-chain profile. Share your on-chain profile with a larger audience and receive Fil Tokens as a donation. This dApp is enhanced with Polygon Network so users will have a seamless transaction experience over the action of sending or receiving Fil. Feel secure as your data is stored on smart contract and LinkFi gets it through your ENS domain.
 
 
 ## Prerequisites
