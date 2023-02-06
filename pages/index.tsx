@@ -48,7 +48,7 @@ export default function LandingPage() {
 
   return (
     <Box
-      bgGradient="radial-gradient(circle at 20% 20%, #c888fdda, rgba(76, 0, 255, 0), rgba(76, 0, 255, 0), #c888fdda, rgba(76, 0, 255, 0))"
+      bgGradient="radial-gradient(circle at 20% 20%, #4287f5, rgba(76, 0, 255, 0), rgba(76, 0, 255, 0), #83b0f7, rgba(76, 0, 255, 0))"
       opacity={1}
       className="blurBg"
     >
@@ -57,8 +57,8 @@ export default function LandingPage() {
           href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap"
           rel="stylesheet"
         />
-        <title>Poly Funds</title>
-        <meta property="og:title" content="Poly Funds" key="title" />
+        <title>Filecoin</title>
+        <meta property="og:title" content="Filecoin" key="title" />
       </Head>
       <NavBar />
       <Container maxW={"3xl"} marginBottom={9}>
@@ -77,7 +77,7 @@ export default function LandingPage() {
             Create your{" "}
             <Text
               as={"span"}
-              bgGradient="linear(to-tr, #a13bf7, purple.300)"
+              bgGradient="linear(to-br, #4287f5, #82aef5)"
               bgClip="text"
               fontWeight="extrabold"
             >
@@ -86,27 +86,25 @@ export default function LandingPage() {
             profile <br /> over{" "}
             <Text
               as={"span"}
-              bgGradient="linear(to-bl, #a13bf7, purple.300)"
+              bgGradient="linear(to-br, #4287f5, #82aef5)"
               bgClip="text"
               fontWeight="extrabold"
             >
-              Polygon
+              Filecoin
             </Text>{" "}
             & get{" "}
             <Text
               as={"span"}
-              bgGradient="linear(to-bl, #a13bf7, purple.300)"
+              bgGradient="linear(to-bl, #4287f5, #82aef5)"
               bgClip="text"
               fontWeight="extrabold"
             >
-              MATIC
+              FIL
             </Text>
           </Heading>
-          <Text color={"gray.900"} fontSize="xl">
-            Just for you! Built your on-chain profile & list the SM links to
-            present your identity. VOILA! Get matic directly to your wallet by
-            your audience. <br />
-            Proudly made on Polygon Network!
+          <Text color={"gray.600"} fontSize="xl">
+            Platform for creators who just love to brag their brand and incentivize their work with us. Get your domain and receive micro-funds at zero fees. <br />
+            Proudly made on Filecoin Network!
           </Text>
           <Stack
             direction={"column"}
@@ -117,12 +115,12 @@ export default function LandingPage() {
           >
             <Button
               colorScheme={"green"}
-              bg={"#9f4be3f9"}
+              bg={"#4287f5"}
               size="lg"
               rounded={"full"}
               px={6}
               _hover={{
-                bg: "#7928CA",
+                bg: "#0a65f7",
                 color: "",
               }}
               onClick={() => {
@@ -148,12 +146,13 @@ export default function LandingPage() {
                 top={"-15px"}
                 transform={"rotate(10deg)"}
               >
-                Funds on Matic!
+                Funds on FIL
               </Text>
             </Box>
           </Stack>
         </Stack>
       </Container>
+      <Footer />
       <Center>
         <Flex p={4} width="70%" justifyContent={"center"} mb={20}>
           <SimpleGrid columns={{ base: 1, md: 3 }} spacing={20}>
@@ -165,12 +164,12 @@ export default function LandingPage() {
                 justify={"center"}
                 color={"white"}
                 rounded={"full"}
-                bgGradient="linear(to-tl, #c888fdda, #8423f9)"
+                bgGradient="linear(to-tl, #4287f5, #0a65f7)"
                 mb={1}
               >
                 <Icon as={StarIcon} w={6} h={6} />
               </Flex>
-              <Text fontWeight={700} fontSize={"2xl"} color={"#a13bf7"}>
+              <Text fontWeight={700} fontSize={"2xl"} color={"#0a65f7"}>
                 Open Source
               </Text>
               <Text color={"gray.800"} fontWeight={500}>
@@ -187,17 +186,17 @@ export default function LandingPage() {
                 justify={"center"}
                 color={"white"}
                 rounded={"full"}
-                bgGradient="linear(to-tl, #c888fdda, #8423f9)"
+                bgGradient="linear(to-tl, #4287f5, #0a65f7)"
                 mb={1}
               >
                 <Icon as={LinkIcon} w={6} h={6} />
               </Flex>
-              <Text fontWeight={700} fontSize={"2xl"} color={"#a13bf7"}>
-                Total decentralised{" "}
+              <Text fontWeight={700} fontSize={"2xl"} color={"#0a65f7"}>
+                Decentralization{" "}
               </Text>
               <Text color={"gray.800"} fontWeight={500}>
-                Be relaxed, we got you! Hassleless transactions on L2
-                Blockchain, just send your wishes instantly with few MATIC.
+                Be relaxed, we got you! Hassleless transactions on 
+                blockchain, just send your wishes instantly with few FIL.
               </Text>
             </Stack>
 
@@ -209,12 +208,12 @@ export default function LandingPage() {
                 justify={"center"}
                 color={"white"}
                 rounded={"full"}
-                bgGradient="linear(to-tl, #c888fdda, #8423f9)"
+                bgGradient="linear(to-tl, #4287f5, #0a65f7)"
                 mb={1}
               >
                 <Icon as={LockIcon} w={6} h={6} />
               </Flex>
-              <Text fontWeight={700} fontSize={"2xl"} color={"#a13bf7"}>
+              <Text fontWeight={700} fontSize={"2xl"} color={"#0a65f7"}>
                 Secure{" "}
               </Text>
               <Text color={"gray.800"} fontWeight={500}>
