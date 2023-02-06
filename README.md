@@ -1,12 +1,13 @@
 # LinkFi
-LinkFi provides utilities to create your personal profile on-chain. Every user can buy their unique FNS from LinkFi and use it to create an on-chain profile. Share your on-chain profile with a larger audience and receive Fil Tokens as a donation. This dApp is enhanced with Polygon Network so users will have a seamless transaction experience over the action of sending or receiving Fil. Feel secure as your data is stored on smart contract and LinkFi gets it through your ENS domain.
-
+LinkFi provides utilities to create your personal profile on-chain. Every user can buy their unique FNS from LinkFi and use it to create an on-chain profile. Share your on-chain profile with a larger audience and receive FIL tokens as a donation. This dApp is enhanced with Filecoin Network so users will have a seamless transaction experience over the action of sending or receiving Fil. Feel secure as your data is stored on smart contract and LinkFi gets it through your FNS domain.
 
 ## Prerequisites
 
-The admin user must have Node.js and npm to use this boilerplate. Just download Node.js from [here](https://nodejs.org/en/download/). Every user must have Metamask wallet to give or receive the donations. Checkout how to create Metamask wallet from [here](https://metamask.io/download/).
+Every user must have Metamask wallet to send wishes with FIL or create their own on-chain profile. Checkout how to create Metamask wallet from [here](https://polygon.technology/blog/getting-started-with-metamask-on-polygon).
 
-## Setup Instructions
+Follow the instructions for local environment: The user must have Node.js and npm to run this platform. Just download Node.js from [here](https://nodejs.org/en/download/).
+
+### Setup Instructions
 
 Clone the repo via CLI:
 ```sh

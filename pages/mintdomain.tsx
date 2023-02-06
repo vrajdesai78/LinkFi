@@ -23,11 +23,7 @@ const App = () => {
   const { data: ensName } = useEnsName({ address });
 
   const [domain, setDomain] = useState("");
-  const imageUrl =
-    "https://imgs.search.brave.com/nUj9LhRXAOuYHg3MNRbqx2PUG-DMhQCOgAN2hd1KFiY/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9pbWFn/ZXMud2FsbHBhcGVy/c2Rlbi5jb20vaW1h/Z2UvZG93bmxvYWQv/ZXRoZXJldW1fYkd0/cWJXV1VtWnFhcmFX/a3BKUm1ibWRsclda/blpXVS5qcGc";
 
-  const ensDetails =
-    "ENS (Ethereum Name Service) is a decentralized, open-source system that allows users to register, update, and manage human-readable names on the Ethereum blockchain. These names can be used as unique identifiers for smart contracts, cryptocurrency addresses, and other resources on the Ethereum network.";
   const contractAbi = abi.abi;
   const doNothing = async () => {};
 
@@ -103,11 +99,11 @@ const App = () => {
             _dark={{ color: "gray.400" }}
             letterSpacing="wider"
           >
-            ENS (Ethereum Name Service) is a decentralized, open-source system
+            FNS (Filecoin Name Service) is a decentralized, open-source system
             that allows users to register, update, and manage human-readable
-            names on the Ethereum blockchain. These names can be used as unique
+            names (e.g ENS) on the Filecoin Network. These names can be used as unique
             identifiers for smart contracts, cryptocurrency addresses, and other
-            resources on the Ethereum network.
+            resources on the Filecoin network.
           </chakra.p>
         </Flex>
       </SimpleGrid>
