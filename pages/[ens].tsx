@@ -29,6 +29,7 @@ import { MdEmail } from "react-icons/md";
 import { NavBar } from "../components/NavBar";
 import { useAccount } from "wagmi";
 import { contractAddress } from "../utils/contract";
+import { Chat } from "@pushprotocol/uiweb";
 
 interface profileDetails {
   name: string;
@@ -104,10 +105,7 @@ const App = () => {
   const contractAbi = abi.abi;
 
   const getAddress = async (ens: string) => {
-    const ensProvider = new ethers.providers.JsonRpcProvider(
-      "https://api.hyperspace.node.glif.io/rpc/v1"
-    );
-
+    
     try {
       if (window.ethereum) {
         const provider = new ethers.providers.Web3Provider(
@@ -129,12 +127,12 @@ const App = () => {
               await contract
                 .getRecord(domainAddress)
                 .then(async (record: string) => {
-                  console.log("Record", record)
+                  console.log("Record", record);
                   setRecord(record);
                   const link = `https://${record}.ipfs.w3s.link/${domainAddress}.json`;
                   const response = await fetch(link);
                   const data: profileDetails = await response.json();
-                  console.log(response)
+                  console.log(response);
                   setProfile(data as profileDetails);
                 });
             } else {
@@ -147,209 +145,211 @@ const App = () => {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
-    const sendTransaction = async () => {
-      try {
-        if (window.ethereum) {
-          const provider = new ethers.providers.Web3Provider(
-            window.ethereum as any
-          );
-          const signer = provider.getSigner();
+  const sendTransaction = async () => {
+    try {
+      if (window.ethereum) {
+        const provider = new ethers.providers.Web3Provider(
+          window.ethereum as any
+        );
+        const signer = provider.getSigner();
 
-          const tx = {
-            from: address,
-            to: walletAddress,
-            value: ethers.utils.parseEther(amount),
-            nonce: provider.getTransactionCount(address!, "latest"),
-            gasLimit: ethers.utils.hexlify(100000),
-            gasPrice: provider.getGasPrice(),
-          };
+        const tx = {
+          from: address,
+          to: walletAddress,
+          value: ethers.utils.parseEther(amount),
+          nonce: provider.getTransactionCount(address!, "latest"),
+          gasLimit: ethers.utils.hexlify(100000),
+          gasPrice: provider.getGasPrice(),
+        };
 
-          signer.sendTransaction(tx).then(async (transaction) => {
-            if (window.ethereum) {
-              const provider = new ethers.providers.Web3Provider(
-                window.ethereum as any
-              );
-              const signer = provider.getSigner();
-              const contract = new ethers.Contract(
-                contractAddress,
-                contractAbi,
-                signer
-              );
+        signer.sendTransaction(tx).then(async (transaction) => {
+          if (window.ethereum) {
+            const provider = new ethers.providers.Web3Provider(
+              window.ethereum as any
+            );
+            const signer = provider.getSigner();
+            const contract = new ethers.Contract(
+              contractAddress,
+              contractAbi,
+              signer
+            );
 
-              const addtx = await contract.setTransaction(
-                walletAddress,
-                address,
-                amount,
-                message
-              );
+            const addtx = await contract.setTransaction(
+              walletAddress,
+              address,
+              amount,
+              message
+            );
 
-              addtx.wait().then(() => {
-                toast({
-                  title: "Matic Sent",
-                  description: "You successfully sent matic",
-                  status: "success",
-                  duration: 9000,
-                  isClosable: true,
-                });
+            addtx.wait().then(() => {
+              toast({
+                title: "Matic Sent",
+                description: "You successfully sent matic",
+                status: "success",
+                duration: 9000,
+                isClosable: true,
               });
-            }
-          });
-        }
-      } catch (e) {
-        console.log(e);
+            });
+          }
+        });
       }
-    };
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
-    return (
+  return (
+    <Box
+      bgGradient="radial-gradient(circle at 20% 20%, #c888fdda, rgba(76, 0, 255, 0), rgba(76, 0, 255, 0), #c888fdda, rgba(76, 0, 255, 0))"
+      opacity={1}
+      className="blurBg"
+    >
+      <NavBar />
+      <Chat
+        account="0x6430C47973FA053fc8F055e7935EC6C2271D5174" //user address
+        supportAddress="0xd9c1CCAcD4B8a745e191b62BA3fcaD87229CB26d" //support address
+        apiKey="jVPMCRom1B.iDRMswdehJG7NpHDiECIHwYMMv6k2KzkPJscFIDyW8TtSnk4blYnGa8DIkfuacU0"
+        env="staging"
+      />
       <Box
-        bgGradient="radial-gradient(circle at 20% 20%, #c888fdda, rgba(76, 0, 255, 0), rgba(76, 0, 255, 0), #c888fdda, rgba(76, 0, 255, 0))"
-        opacity={1}
-        className="blurBg"
+        style={{
+          margin: 0,
+          padding: 0,
+          height: "calc(100vh-72px)",
+          width: "100vw",
+          overflow: "hidden",
+        }}
       >
-        <NavBar />
-        <Box
-          style={{
-            margin: 0,
-            padding: 0,
-            height: "calc(100vh-72px)",
-            width: "100vw",
-            overflow: "hidden",
-          }}
+        <style jsx global>{`
+          html,
+          body {
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+          }
+        `}</style>
+        <Flex
+          py={6}
+          minW={"100vw"}
+          maxH={"100vh"}
+          p={30}
+          w="full"
+          alignItems="center"
+          justifyContent="center"
         >
-          <style jsx global>{`
-            html,
-            body {
-              height: 100%;
-              width: 100%;
-              overflow-x: hidden;
-              margin: 0;
-              padding: 0;
-            }
-          `}</style>
-          <Flex
-            py={6}
-            minW={"100vw"}
-            maxH={"100vh"}
-            p={30}
-            w="full"
-            alignItems="center"
-            justifyContent="center"
+          <Box
+            maxW={"sm"}
+            w={"full"}
+            border="1px"
+            bgGradient={"linear(blue.200 0%, purple.200 35%, green.100 100%)"}
+            boxShadow={"2xl"}
+            rounded={"lg"}
+            p={6}
+            textAlign={"center"}
           >
-            <Box
-              maxW={"sm"}
-              w={"full"}
-              border="1px"
-              bgGradient={"linear(blue.200 0%, purple.200 35%, green.100 100%)"}
-              boxShadow={"2xl"}
-              rounded={"lg"}
-              p={6}
+            <Avatar
+              border={"2px"}
+              size={"2xl"}
+              src={profile.profileImage}
+              mb={4}
+              pos={"relative"}
+            />
+            <Heading fontSize={"2xl"} fontFamily={"body"}>
+              {profile.name}
+            </Heading>
+            <Text
               textAlign={"center"}
+              color={"black.900"}
+              fontWeight="bold"
+              px={3}
             >
-              <Avatar
-                border={"2px"}
-                size={"2xl"}
-                src={profile.profileImage}
-                mb={4}
-                pos={"relative"}
-              />
-              <Heading fontSize={"2xl"} fontFamily={"body"}>
-                {profile.name}
-              </Heading>
-              <Text
-                textAlign={"center"}
-                color={"black.900"}
-                fontWeight="bold"
-                px={3}
-              >
-                {profile.bio}
-              </Text>
+              {profile.bio}
+            </Text>
 
-              {/* {Show social media links of user} */}
+            {/* {Show social media links of user} */}
 
-              <VStack mt={8} direction={"row"} spacing={4}>
-                {socialLinkComponent(
-                  `mailto:${profile.email}`,
-                  "Email",
-                  MdEmail
-                )}
-                {socialLinkComponent(
-                  `https://${profile.linkedinUrl}`,
-                  "LinkedIn",
-                  FaLinkedin
-                )}
-                {socialLinkComponent(
-                  `https://${profile.twitterUrl}`,
-                  "Twitter",
-                  FaTwitter
-                )}
-                {socialLinkComponent(
-                  `https://${profile.githubUrl}`,
-                  "Github",
-                  FaGithub
-                )}
-              </VStack>
-              <Textarea
-                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                  setMessage(e.target.value)
-                }
-                placeholder="Enter Message"
-                borderColor={"gray.800"}
-                mt={1}
-                rows={3}
-                shadow="sm"
-                marginTop={4}
-                value={message}
-                bg={"gray.100"}
-              />
-              <Stack mt={4} direction={"row"} spacing={2}>
-                <NumberInput width={"100%"} border={1}>
-                  <NumberInputField
-                    placeholder="Enter Matic"
-                    flex={2}
-                    bg={"gray.100"}
-                    fontSize={"sm"}
-                    rounded={"md"}
-                    width={"full"}
-                    id="amount"
-                    onChange={(e) => setAmount(e.target.value)}
-                    _focus={{
-                      bg: "gray.100",
-                    }}
-                  />
-                  <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
-                  </NumberInputStepper>
-                </NumberInput>
-                <Button
-                  flex={1}
+            <VStack mt={8} direction={"row"} spacing={4}>
+              {socialLinkComponent(`mailto:${profile.email}`, "Email", MdEmail)}
+              {socialLinkComponent(
+                `https://${profile.linkedinUrl}`,
+                "LinkedIn",
+                FaLinkedin
+              )}
+              {socialLinkComponent(
+                `https://${profile.twitterUrl}`,
+                "Twitter",
+                FaTwitter
+              )}
+              {socialLinkComponent(
+                `https://${profile.githubUrl}`,
+                "Github",
+                FaGithub
+              )}
+            </VStack>
+            <Textarea
+              onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                setMessage(e.target.value)
+              }
+              placeholder="Enter Message"
+              borderColor={"gray.800"}
+              mt={1}
+              rows={3}
+              shadow="sm"
+              marginTop={4}
+              value={message}
+              bg={"gray.100"}
+            />
+            <Stack mt={4} direction={"row"} spacing={2}>
+              <NumberInput width={"100%"} border={1}>
+                <NumberInputField
+                  placeholder="Enter Matic"
+                  flex={2}
+                  bg={"gray.100"}
                   fontSize={"sm"}
                   rounded={"md"}
-                  bg={"blue.700"}
-                  size={"2xl"}
-                  p={2}
-                  color={"white"}
-                  onClick={sendTransaction}
-                  boxShadow={
-                    "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
-                  }
-                  _hover={{
-                    bg: "blue.900",
-                  }}
+                  width={"full"}
+                  id="amount"
+                  onChange={(e) => setAmount(e.target.value)}
                   _focus={{
-                    bg: "blue.900",
+                    bg: "gray.100",
                   }}
-                >
-                  Send Matic
-                </Button>
-              </Stack>
-            </Box>
-          </Flex>
-        </Box>
+                />
+                <NumberInputStepper>
+                  <NumberIncrementStepper />
+                  <NumberDecrementStepper />
+                </NumberInputStepper>
+              </NumberInput>
+              <Button
+                flex={1}
+                fontSize={"sm"}
+                rounded={"md"}
+                bg={"blue.700"}
+                size={"2xl"}
+                p={2}
+                color={"white"}
+                onClick={sendTransaction}
+                boxShadow={
+                  "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
+                }
+                _hover={{
+                  bg: "blue.900",
+                }}
+                _focus={{
+                  bg: "blue.900",
+                }}
+              >
+                Send Matic
+              </Button>
+            </Stack>
+          </Box>
+        </Flex>
       </Box>
-    );
-  };
+    </Box>
+  );
+};
 
 export default App;
