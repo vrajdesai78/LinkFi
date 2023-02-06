@@ -1,8 +1,6 @@
 # Poly-Fund
 Poly-Fund provides utilities to create your personal profile on-chain. Every user can buy their unique ENS from Poly-Fund and use it to create an on-chain profile. Share your on-chain profile with a larger audience and receive MATIC as a donation. This dApp is enhanced with Polygon Network so users will have a seamless transaction experience over the action of sending or receiving MATIC. Feel secure as your data is stored on smart contract and Poly-Fund gets it through your ENS domain.
 
-![land](https://user-images.githubusercontent.com/43074241/209424200-6d8672b7-c95f-4448-8d77-170de636bde5.png)
-
 
 ## Prerequisites
 
