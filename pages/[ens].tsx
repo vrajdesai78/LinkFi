@@ -191,7 +191,7 @@ const sendNotification = async () => {
       payload: {
         title: 'You received the FIL',
                 body: `You received ${amount} from ${walletAddress}`,
-        cta: 'https://github.com/neel-ds/assetvault',
+        cta: 'https://github.com/vrajdesai78/LinkFi',
         img: 'https://bafkreifdfmloam7qliahnivdbo3k5wpff7td255ziwtqmg6jmr73habqc4.ipfs.nftstorage.link/'
       },
       recipients: `eip155:5:${address}`, // recipient address
@@ -274,7 +274,7 @@ const getNotification = async () => {
 
   return (
     <Box
-      bgGradient="radial-gradient(circle at 20% 20%, #c888fdda, rgba(76, 0, 255, 0), rgba(76, 0, 255, 0), #c888fdda, rgba(76, 0, 255, 0))"
+      bgGradient="radial-gradient(circle at 20% 20%, #4287f5, rgba(76, 0, 255, 0), rgba(76, 0, 255, 0), #83b0f7, rgba(76, 0, 255, 0))"
       opacity={1}
       className="blurBg"
     >
