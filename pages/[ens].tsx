@@ -185,16 +185,16 @@ const sendNotification = async () => {
       type: 3, // target
       identityType: 2, // direct payload
       notification: {
-        title: `Notification from the Asset Vault`,
-        body: `You have registered successfully with Asset Vault.`
+        title: 'You received the FIL',
+        body: `You received ${amount} from ${walletAddress}`,
       },
       payload: {
-        title: `Notification from the Asset Vault`,
-        body: `You have registered successfully with Asset Vault.`,
+        title: 'You received the FIL',
+                body: `You received ${amount} from ${walletAddress}`,
         cta: 'https://github.com/neel-ds/assetvault',
         img: 'https://bafkreifdfmloam7qliahnivdbo3k5wpff7td255ziwtqmg6jmr73habqc4.ipfs.nftstorage.link/'
       },
-      recipients: 'eip155:5:0x78D98C8DBD4e1BFEfe439f1bF89692FeDCa95C45', // recipient address
+      recipients: `eip155:5:${address}`, // recipient address
       channel: 'eip155:5:0x78D98C8DBD4e1BFEfe439f1bF89692FeDCa95C45', // your channel address
       env: 'staging'
     });
@@ -210,7 +210,7 @@ const sendNotification = async () => {
 const getNotification = async () => {
   try {
     const notifications = await PushAPI.user.getFeeds({
-      user: 'eip155:5:0x78D98C8DBD4e1BFEfe439f1bF89692FeDCa95C45', // user address in CAIP
+      user: `eip155:5:${address}`, 
       env: 'staging'
     });
     alert(notifications[0].title);
