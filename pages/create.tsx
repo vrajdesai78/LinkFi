@@ -21,7 +21,7 @@ export default function SplitScreen() {
 
   return (
     <Box
-      bgGradient="radial-gradient(circle at 20% 20%, #c888fdda, rgba(76, 0, 255, 0), rgba(76, 0, 255, 0), #c888fdda, rgba(76, 0, 255, 0))"
+      bgGradient="radial-gradient(circle at 20% 20%, #4287f5, rgba(76, 0, 255, 0), rgba(76, 0, 255, 0), #83b0f7, rgba(76, 0, 255, 0))"
       opacity={1}
       className="blurBg"
     >
@@ -62,13 +62,13 @@ export default function SplitScreen() {
                 >
                   Mint your own
                   <br />
-                  <Text as={"span"} color={"purple.800"}>
-                    .eth domain
+                  <Text as={"span"} color={"#0a39f7"}>
+                    .FIL domain
                   </Text>
                 </Heading>
                 <Text color={"gray.800"}>
-                  Mint your own .eth domain and start receiving donations in
-                  matic, the native token of Polygon. You can mint your own .eth
+                  Mint your own .FIL domain and start receiving donations in
+                  FIL, the native token of Filecoin. You can mint your own .FIL
                   domain with minimal fees.
                 </Text>
                 <Stack
@@ -80,11 +80,11 @@ export default function SplitScreen() {
                 >
                   <Button
                     colorScheme={"green"}
-                    bg={"purple.600"}
+                    bg={"#0a39f7"}
                     rounded={"full"}
                     px={6}
                     _hover={{
-                      bg: "purple.800",
+                      bg: "#0a65f7",
                     }}
                     onClick={() => {
                       router.push("/mintdomain");
@@ -109,7 +109,7 @@ export default function SplitScreen() {
                       top={"-15px"}
                       transform={"rotate(10deg)"}
                     >
-                      Starting at 0.01 MATIC
+                      Starting at 0.01 FIL
                     </Text>
                   </Box>
                 </Stack>

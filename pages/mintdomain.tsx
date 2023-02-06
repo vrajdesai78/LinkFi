@@ -13,21 +13,9 @@ import {
   InputGroup,
   InputRightElement,
   Image,
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  useDisclosure,
-  Heading,
-  ButtonGroup,
-  Stack,
-  HStack,
-  VStack,
-  Divider,
 } from "@chakra-ui/react";
 import { useAccount, useEnsName } from "wagmi";
 import abi from "../utils/contractABI.json";
-import polygonLogo from "../assets/Polygon_blockchain_logo.png";
 import { contractAddress } from "../utils/contract";
 
 const App = () => {
@@ -83,7 +71,7 @@ const App = () => {
 
   return (
     <Box
-      bgGradient="radial-gradient(circle at 20% 20%, #c888fdda, rgba(76, 0, 255, 0), rgba(76, 0, 255, 0), #c888fdda, rgba(76, 0, 255, 0))"
+      bgGradient="radial-gradient(circle at 20% 20%, #4287f5, rgba(76, 0, 255, 0), rgba(76, 0, 255, 0), #83b0f7, rgba(76, 0, 255, 0))"
       opacity={1}
       className="blurBg"
     >
@@ -138,7 +126,7 @@ const App = () => {
             color="black"
             lineHeight="shorter"
           >
-            Get your own .eth domain.
+            Get your own .FIL domain.
           </chakra.h1>
           <chakra.form w="full" mb={6}>
             <InputGroup
@@ -150,7 +138,7 @@ const App = () => {
                 size="lg"
                 color="black"
                 type="email"
-                placeholder="Enter your .eth User Name"
+                placeholder="Enter your .FIL User Name"
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setDomain(e.target.value)
                 }
@@ -182,7 +170,7 @@ const App = () => {
         </Flex>
         <Box ml={30}>
           <Image
-            src="https://cdn3d.iconscout.com/3d/premium/thumb/polygon-coin-6400031-5272781.png"
+            src="https://bafkreic3h2hx4bh6krn2oo36bms5rlyfqrn3kq32wuf36p446e7zj5jmpq.ipfs.nftstorage.link"
             fit="cover"
             w="60%"
             h="full"

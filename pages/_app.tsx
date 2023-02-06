@@ -7,8 +7,7 @@ import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
 
 import { filecoinHyperspace, polygonMumbai } from "@wagmi/chains";
-import { NavBar } from "../components/NavBar";
-import { Footer } from "../components/Footer";
+
 
 export default function App({ Component, pageProps }: AppProps) {
   const { chains, provider } = configureChains(
@@ -30,7 +29,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider>
       <WagmiConfig client={wagmiClient}>
-        <RainbowKitProvider chains={chains}>
+        <RainbowKitProvider chains={chains}> 
           <Component {...pageProps} />
         </RainbowKitProvider>
       </WagmiConfig>

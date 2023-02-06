@@ -8,13 +8,13 @@ export const Footer = () => {
       bottom="0"
       width="100%"
       textAlign="center"
-      color="gray.500"
+      color="gray.600"
       fontSize="sm"
       py={4}
     >
       Made with ❤️ by{" "}
-      <Text as="a" href="https://twitter.com/0xMaki" color="gray.500">
-        @vrajdesai78
+      <Text as="a" href="" color="gray.600">
+        @LinkFi
       </Text>
     </Text>
   );
