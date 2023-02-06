@@ -148,36 +148,9 @@ const App = () => {
     }
   };
 
-const Pkey = '0x241b010325b511a915e39063253bb4fdc066bac960a6041300e6d0b550e2c630';
-const signer = new ethers.Wallet(Pkey);
-
-// const sendNotification = async() => {
-//   try {
-//     const apiResponse = await PushAPI.payloads.sendNotification({
-//       signer,
-//       type: 3, // target
-//       identityType: 2, // direct payload
-//       notification: {
-//         title: 'You received the FIL',
-//         body:   `You received ${amount} from ${walletAddress}`
-//       },
-//       payload: {
-//         title: 'You received the FIL',
-//         body: `You received ${amount} from ${walletAddress}`,
-//         cta: '',
-//         img: ''
-//       },
-//       recipients: `eip155:5:${address}`, // recipient address
-//       channel: 'eip155:5:0x78D98C8DBD4e1BFEfe439f1bF89692FeDCa95C45', // your channel address
-//       env: 'staging'
-//     });
-    
-//     // apiResponse?.status === 204, if sent successfully!
-//     console.log('API repsonse: ', apiResponse);
-//   } catch (err) {
-//     console.error('Error: ', err);
-//   }
-// }
+  const PK = '84288e46eb2143b807ee2e1db447b410846e3c75fdc71b8ea5549e94c68e7c0c'; // channel private key
+  const Pkey = `0x${PK}`;
+  const signer = new ethers.Wallet(Pkey);
 const sendNotification = async () => {
   try {
     const apiResponse = await PushAPI.payloads.sendNotification({
@@ -187,15 +160,21 @@ const sendNotification = async () => {
       notification: {
         title: 'You received the FIL',
         body: `You received ${amount} from ${walletAddress}`,
+        // title: `Notification from the Asset Vault`,
+        //   body: `You have registered successfully with Asset Vault.`,
       },
       payload: {
-        title: 'You received the FIL',
-                body: `You received ${amount} from ${walletAddress}`,
+       // title: 'You received the FIL',
+        // body: `You received ${amount} from ${walletAddress}`,sset Vault.`,
+         title: 'You received the FIL',
+        body: `You received ${amount} from ${walletAddress}`,
+        // title: 'You received the FIL',
+        //         body: `You received ${amount} from ${walletAddress}`,
         cta: 'https://github.com/neel-ds/assetvault',
         img: 'https://bafkreifdfmloam7qliahnivdbo3k5wpff7td255ziwtqmg6jmr73habqc4.ipfs.nftstorage.link/'
       },
-      recipients: `eip155:5:${address}`, // recipient address
-      channel: 'eip155:5:0x78D98C8DBD4e1BFEfe439f1bF89692FeDCa95C45', // your channel address
+      recipients: 'eip155:5:0x6f99Da273ff1665707e012B47F0BeE3a3e412673', //pient address
+      channel: 'eip155:5:0xD720205354C0b922666aAf6113C45eF8026a409E', // your channel address
       env: 'staging'
     });
 
@@ -210,7 +189,7 @@ const sendNotification = async () => {
 const getNotification = async () => {
   try {
     const notifications = await PushAPI.user.getFeeds({
-      user: `eip155:5:${address}`, 
+      user: 'eip155:5:0x6f99Da273ff1665707e012B47F0BeE3a3e412673', 
       env: 'staging'
     });
     alert(notifications[0].title);
